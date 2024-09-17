@@ -1,6 +1,8 @@
 package it.kyaw.my_onlineshop.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,14 +30,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
         intRecyclerView();
-       
+       bottom_navigation();
+    }
+
+    private void bottom_navigation() {
+        LinearLayout homebtn = findViewById(R.id.homebtn);
+        LinearLayout cartbtn = findViewById(R.id.cartbtn);
+
+        homebtn.setOnClickListener(v -> {
+            startActivity(new Intent( MainActivity.this,MainActivity.class));
+        });
+
+        cartbtn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this,CartActivity.class));
+        });
     }
 
     private void intRecyclerView() {
         ArrayList<PopularDomain> items = new ArrayList<>();
-        items.add(new PopularDomain("MacBook 13 M2 chip","Your MacBook Pro comes with 90 days of complimentary technical support and a one-year limited warranty. Purchase AppleCare+ for Mac to extend your coverage from your AppleCare+ purchase date and add unlimited repairs for accidental damage from handling, each subject to a service fee of $99 for screen damage or external enclosure damage, or $299 for other repairable accidental damage, plus applicable tax.","pic1",15,4,500));
-        items.add(new PopularDomain("PS-5 Digital","Your MacBook Pro comes with 90 days of complimentary technical support and a one-year limited warranty. Purchase AppleCare+ for Mac to extend your coverage from your AppleCare+ purchase date and add unlimited repairs for accidental damage from handling, each subject to a service fee of $99 for screen damage or external enclosure damage, or $299 for other repairable accidental damage, plus applicable tax.","pic2",10,30,450));
-        items.add(new PopularDomain("Iphone 14","Your MacBook Pro comes with 90 days of complimentary technical support and a one-year limited warranty. Purchase AppleCare+ for Mac to extend your coverage from your AppleCare+ purchase date and add unlimited repairs for accidental damage from handling, each subject to a service fee of $99 for screen damage or external enclosure damage, or $299 for other repairable accidental damage, plus applicable tax.","pic3",15,20,800));
+        items.add(new PopularDomain("MacBook 13 M2 chip","Your MacBook Pro comes with 90 days of complimentary technical support and a one-year limited warranty." +
+                " Purchase AppleCare+ for Mac to extend your coverage from your AppleCare+ purchase date and add unlimited repairs for accidental damage from handling, " +
+                "each subject to a service fee of $99 for screen damage or external enclosure damage, or $299 for other repairable accidental damage, plus applicable tax.",
+                "pic1",15,4,500));
+        items.add(new PopularDomain("PS-5 Digital","Your MacBook Pro comes with 90 days of complimentary technical support and a one-year limited warranty. " +
+                "Purchase AppleCare+ for Mac to extend your coverage from your AppleCare+ purchase date and add unlimited repairs for accidental damage from handling, " +
+                "each subject to a service fee of $99 for screen damage or external enclosure damage, or $299 for other repairable accidental damage, plus applicable tax.",
+                "pic2",10,4.5,450));
+        items.add(new PopularDomain("Iphone 14","Your MacBook Pro comes with 90 days of complimentary technical support and a one-year limited warranty. " +
+                "Purchase AppleCare+ for Mac to extend your coverage from your AppleCare+ purchase date and add unlimited repairs for accidental damage from handling, " +
+                "each subject to a service fee of $99 for screen damage or external enclosure damage, or $299 for other repairable accidental damage, plus applicable tax.",
+                "pic3",15,20,800));
 
         recyclerViewPopular = findViewById(R.id.view1);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
